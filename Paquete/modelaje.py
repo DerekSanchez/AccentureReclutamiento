@@ -1,24 +1,21 @@
-# Modelos lineales
+
 from sklearn.linear_model import LogisticRegression  # Regresión logística
-
-# Máquinas de soporte vectorial
 from sklearn.svm import SVC  # Máquina de soporte vectorial con kernel
-
-# Vecinos más cercanos
 from sklearn.neighbors import KNeighborsClassifier  # k-Vecinos más cercanos
-
-# Árboles de decisión y bosques
 from sklearn.tree import DecisionTreeClassifier  # Árboles de decisión
 from sklearn.ensemble import RandomForestClassifier  # Bosque aleatorio
 from sklearn.ensemble import GradientBoostingClassifier  # Clasificador basado en Gradient Boosting
-
-# Naive Bayes
 from sklearn.naive_bayes import GaussianNB  # Naive Bayes Gaussiano
 
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.metrics import accuracy_score, balanced_accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, confusion_matrix
 
 
+
+
+#Funcion que permite que el usuario seleccione un modelo y una metrica de evaluacion a maximizar
+#Toma de input los sets de entrenamiento y testing
+#Arroja de output los mejores parámetros del modelo (basados en randomized grid search) y las metricas relevantes para un problema de clasificacion
 def SeleccionModelo(X_train, y_train, X_test, y_test, ModelSelected, metric, seed, iteraciones):
 
     #Lista de modelos disponibles
