@@ -1,16 +1,14 @@
 
-from sklearn.linear_model import LogisticRegression  # Regresión logística
-from sklearn.svm import SVC  # Máquina de soporte vectorial con kernel
-from sklearn.neighbors import KNeighborsClassifier  # k-Vecinos más cercanos
-from sklearn.tree import DecisionTreeClassifier  # Árboles de decisión
-from sklearn.ensemble import RandomForestClassifier  # Bosque aleatorio
-from sklearn.ensemble import GradientBoostingClassifier  # Clasificador basado en Gradient Boosting
-from sklearn.naive_bayes import GaussianNB  # Naive Bayes Gaussiano
+from sklearn.linear_model import LogisticRegression  #Regresión logística
+from sklearn.svm import SVC  #Support vector machine
+from sklearn.neighbors import KNeighborsClassifier  #k-NN
+from sklearn.tree import DecisionTreeClassifier  #Árboles de decisión
+from sklearn.ensemble import RandomForestClassifier  #random forest
+from sklearn.ensemble import GradientBoostingClassifier  #Gradient Boosting
+from sklearn.naive_bayes import GaussianNB  #Naive Bayes Gaussiano
 
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.metrics import accuracy_score, balanced_accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, confusion_matrix
-
-
 
 
 #Funcion que permite que el usuario seleccione un modelo y una metrica de evaluacion a maximizar
@@ -25,6 +23,7 @@ def SeleccionModelo(X_train, y_train, X_test, y_test, ModelSelected, metric, see
         "Gradient Boosting"
     ]
 
+    #Codicion if para setear el modelo y el grid de parametros dependiendo de la seleccion del usuario
     if ModelSelected == "Logistic Regression":
         modelo = LogisticRegression()
         parametros = {
@@ -92,17 +91,17 @@ def SeleccionModelo(X_train, y_train, X_test, y_test, ModelSelected, metric, see
         parametros = None
     
     scoring_options = [
-    'accuracy',          #Exactitud
+    'accuracy',          #Accuracy
     'f1',                #F1-score (media armónica de precisión y recall)
     'precision',         #Precisión (proporción de verdaderos positivos sobre el total de positivos predichos)
     'recall',            #Recall o sensibilidad (proporción de verdaderos positivos sobre el total de verdaderos positivos y falsos negativos)
     'roc_auc',           #AUC de la curva ROC (útil para clasificación binaria)
     'average_precision', #Precisión promedio ponderada (similar a AUC pero para precisión y recall)
     'log_loss',          #Logarithmic Loss (medida de incertidumbre de las predicciones)
-    'balanced_accuracy', #Exactitud balanceada (promedio de recall por clase)
+    'balanced_accuracy', #accuraccy balanceada (promedio de recall por clase)
     ]
     
-    # signación de la métrica de scoring
+    #asignación de la métrica de scoring
     if metric not in scoring_options:
         print("Advertencia: La métrica de scoring ingresada no es válida.")
         print("Escoge una de las métricas disponibles: accuracy, f1, precision, recall, roc_auc, average_precision, log_loss o balanced_accuracy.")
